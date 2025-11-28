@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+	<pluginGroups>
+	</pluginGroups>
+	<proxies>
+	</proxies>
+	<servers>
+		<server>
+			<id>archetype-repository</id>
+			<username>username</username>
+			<password>Password</password>
+		</server>
+	</servers>
+	<mirrors>
+	</mirrors>
+	<profiles>
+		<profile>
+			<id>archetype-repository</id>
+			<repositories>
+				<repository>
+					<id>archetype</id>
+					<name>Mule Repository</name>
+					<url>https://repository-master.mulesoft.org/nexus/content/repositories/public</url>
+					<releases>
+						<enabled>true</enabled>
+						<checksumPolicy>fail</checksumPolicy>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+						<checksumPolicy>warn</checksumPolicy>
+					</snapshots>
+				</repository>
+			</repositories>
+		</profile>
+	</profiles>
+</settings>

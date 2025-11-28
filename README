@@ -1,0 +1,23 @@
+Security
+apidev-basic-authentication - To enable mule api with basic username/password authentication
+apidev-basic-security	- To invoke the service with username/password
+apidev-security-integrations - To invoke the service with oauth token
+
+Offline/Online Custom Policy
+Create custom policy(<<assetId>>-<<version>>-mule-policy.jar) and place the file in %MULE_HOME%/policies/policy-templates folder.
+    1. Update settings.xml with archetype-repository details
+    2. Run the command
+      mvn -Parchetype-repository archetype:generate -DarchetypeGroupId=org.mule.tools -DarchetypeArtifactId=api-gateway-custom-policy-archetype -DarchetypeVersion=1.0.0 -DgroupId=${orgId} -DartifactId=${policyName} -Dversion=1.0.0-SNAPSHOT
+     orgId - Replace with your own orgid
+     policyName -Replace with your own policyname
+    3.my-custom-policy project generated.
+3. my-custom-offlinepolicy	project client to enable the policy.
+  In the mule application, configure Autodiscovery.is important to make sure the "ApiID" in the autodiscovery matches the "api.id" in policy configuration json file.
+  NOTE : When the application starts, Autodiscovery configuration detects the presence of offline policy and applied it to the app.
+
+4. Place the policy configuration json file in "%MULE_HOME%/policies/offline-policies" directory.ex:-  my-custom-policy.json to apply the policy
+  The name of the configuration json file us used to generate the policy from the policy template. The "assetId" and "version" mentioned inside the configuration json file is used to read the correct policy template "<<assetId>>-<<version>>-mule-policy.jar" while generating the policy.
+5. Disable the gatekeeper so that mule runtime does not make an attempt to connect to API manager. With the gatekeeper enabled, you will see in mule_agent logs that the gatekeeper makes constant effort to connect to API manager and throws error after it fails to connect
+  mule.bat -config  -M-Danypoint.platform.gatekeeper=disabled
+  Error if u not disable - INFO  2019-01-17 23:37:59,305 [WrapperListener_start_runner] [event: ] com.mulesoft.mule.runtime.gw.policies.lifecyle.GateKeeper: API ApiKey{id='1234578'} is blocked (unavailable).
+  For success case - INFO  2019-01-17 23:38:56,348 [WrapperListener_start_runner] [event: ] com.mulesoft.mule.runtime.gw.policies.deployment.DefaultPolicyDeployer: Applying policy sample-custom-policy version 1.0.0 to API 15576361 in application OfflinePolicy

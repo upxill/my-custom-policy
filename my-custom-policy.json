@@ -1,0 +1,14 @@
+{
+  "id" : "my-custom-policy",
+  "template" : {
+    "groupId" : "21d6aca9-227f-45c9-98c3-5ed2532b42c50",
+    "assetId" : "my-custom-policy",
+    "version" : "1.0.0"
+  },
+  "api" : [ {
+    "id" : 1234578
+  } ],
+  "online" : false,
+  "order" : 1,
+  "configuration" : { }
+}
