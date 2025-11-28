@@ -1,0 +1,10 @@
+id: custompolicy
+name: custompolicy
+description: custompolicy
+category: Custom
+type: custom
+resourceLevelSupported: true
+standalone: true
+requiredCharacteristics: []
+providedCharacteristics: []
+configuration: []
